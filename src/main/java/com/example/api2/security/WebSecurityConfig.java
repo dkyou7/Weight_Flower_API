@@ -32,7 +32,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer configure() {
         return (web -> web.ignoring().mvcMatchers(
                 "/v1/weight/**",  "/v1/member/**", "v1/reminder/**", "/h2-console/**",
-                "/v3/api-docs/**", "/swagger-ui/**", "/oauth/kakao", "/oauth/accessToken")
+                "/v3/api-docs/**", "/swagger-ui/**", "/oauth/kakao", "/oauth/accessToken","/healthCheck")
                 // Path resources 경로 403 에러 해결하는 코드
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()));
     }
