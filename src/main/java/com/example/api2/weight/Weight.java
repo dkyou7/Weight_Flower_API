@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,7 +28,7 @@ public class Weight {
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
-    private LocalDateTime regDate; // 생성 시간 지정
+    private LocalDate regDate; // 생성 시간 지정
 
     @ManyToOne
     @JsonIgnore
@@ -37,6 +38,6 @@ public class Weight {
     private WeightStatus status;
 
     public static Weight toEntity(WeightDTO dto) {
-        return Weight.builder().weight(dto.getWeight()).regDate(LocalDateTime.now()).build();
+        return Weight.builder().weight(dto.getWeight()).regDate(LocalDate.now()).build();
     }
 }

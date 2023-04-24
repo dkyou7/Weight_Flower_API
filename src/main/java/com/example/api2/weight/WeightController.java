@@ -17,6 +17,16 @@ public class WeightController {
     private final WeightService weightService;
 
     /**
+     * 체중 리스트
+     *
+     * @return 사용자 체중 리스트
+     */
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll() {
+        return weightService.processFindAll();
+    }
+
+    /**
      * 상세 조회 기능
      *
      * @param weightId 체중 고유 식별자

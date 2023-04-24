@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -178,6 +180,19 @@ public class WeightService {
         try {
             Weight byLetterId = retrieveWeight(weightId).orElseThrow(EntityNotFoundException::new);
             return ResponseEntity.ok().body(byLetterId);
+        } catch (Exception e) {
+            return returnBadRequest(e);
+        }
+    }
+
+    public ResponseEntity<?> processFindAll() {
+        try {
+            List<mainWeight> byLetterId = weightRepository.findAllGroupByStatus(LocalDate.now());
+            List<MainWeightDto> result = new ArrayList<>();
+            for(mainWeight w : byLetterId){
+                result.add(new MainWeightDto(w.getStatus(),w.getNickname()));
+            }
+            return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return returnBadRequest(e);
         }

@@ -20,11 +20,11 @@ public class WeightDTO {
     public WeightDTO(Weight weight){
         this.id = weight.getId();
         this.weight = weight.getWeight();
-        this.regDate = weight.getRegDate().toLocalDate();
+        this.regDate = weight.getRegDate();
         this.weightStatus = weight.getStatus();
     }
 
     public static Weight toEntity(WeightDTO dto) {
-        return Weight.builder().id(dto.getId()).weight(dto.getWeight()).regDate(LocalDateTime.now()).build();
+        return Weight.builder().id(dto.getId()).weight(dto.getWeight()).regDate(LocalDate.now()).build();
     }
 }
