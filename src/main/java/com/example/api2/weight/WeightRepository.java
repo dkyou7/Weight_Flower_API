@@ -14,7 +14,7 @@ public interface WeightRepository extends JpaRepository<Weight,String> {
             "SELECT w.status as status, w.member.nickname as nickname " +
             "FROM Weight w " +
             "where w.regDate >= :today " +
-            "GROUP BY w.status"
+            "GROUP BY w.status, w.member.nickname"
     )
     List<mainWeight> findAllGroupByStatus(LocalDate today);
 }
